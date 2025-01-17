@@ -1,1 +1,1 @@
-A set to security tools for Django.
+A set of security tools for Django.

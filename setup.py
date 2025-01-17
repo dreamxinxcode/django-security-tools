@@ -6,7 +6,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     license='MIT',
-    description='A set to security tools for Django.',
+    description='A set of security tools for Django.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     url='https://github.com/dreamxinxcode/django-security-tools',

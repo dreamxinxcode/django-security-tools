@@ -1,33 +1,22 @@
 import logging
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.utils.timezone import now
 from .models import HoneypotAdminLog
 
-# Set up a logger for honeypot activity
-logger = logging.getLogger('honeypot')
 
 def admin_honeypot(request):
-    return render(request, 'django-security-tools/index.html')
-
-
-def honeypot_login(request):
     if request.method == 'POST':
         ip = get_client_ip(request)
         username = request.POST.get('username')
         password = request.POST.get('password')
         timestamp = now()
 
-        # Log the information
-        logger.warning(f"HONEYPOT TRIGGERED: IP={ip}, Username={username}, Password={password}, Time={now()}")
-
         login_attempt = HoneypotAdminLog.objects.create(ip=ip, username=username, password=password, timestamp=timestamp)
 
-        # Send a generic response (e.g., invalid credentials message)
-        return render(request, 'django-security-tools/index.html')
+        return redirect('admin_honeypot') # Refresh page
 
-    # Render the fake login page
-    return render(request, 'django-security-tools/index.html')  # Use a decoy login template
+    return render(request, 'django-security-tools/index.html')  # Render the honeypot login
 
 def get_client_ip(request):
     """Get the client's IP address."""

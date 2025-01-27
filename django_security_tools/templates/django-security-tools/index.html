@@ -44,7 +44,8 @@
           <!-- Content -->
           <div id="content" class="colM">
             <div id="content-main">
-              <form action="/zzz/login/?next=/zzz/" method="post" id="login-form">
+              <form action="{% url 'honeypot_login' %}" method="post" id="login-form">
+                {% csrf_token %}
                 <div class="form-row">
                   <label for="id_username" class="required">Username:</label>
                   <input type="text" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username">
@@ -58,6 +59,7 @@
                   <input type="submit" value="Log in">
                 </div>
               </form>
+              
             </div>
             <br class="clear">
           </div>

@@ -30,7 +30,3 @@ urlpatterns = [
     path('secret/', admin.site.urls), # Your real admin
 ]
 ```
-
-# Install in dev
-
-`pip install -e path/to/django-security-tools`
